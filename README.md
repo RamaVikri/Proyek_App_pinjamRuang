@@ -1,1 +1,1 @@
-Poyek
+Proyek Perangkat Lunak sederhana
