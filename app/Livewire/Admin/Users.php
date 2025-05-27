@@ -15,9 +15,9 @@ class Users extends Component
     public function render()
     {
         $data = array(
-            'user' => User::where('name', 'like', '%'.$this->search.'%')
+            'users' => User::where('name', 'like', '%'.$this->search.'%')
             ->orwhere('email', 'like', '%'.$this->search.'%')
-            ->orderBy('role', 'desc')-> paginate($this->paginate)
+            ->orderBy('is_admin', 'desc')-> paginate($this->paginate)
         );
         return view('livewire.admin.users', $data);
     }

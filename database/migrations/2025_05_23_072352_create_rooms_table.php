@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text("Decs")->nullable();
+            $table->enum('type', ['besar', 'sedang', 'kecil']);
+            $table->text("desc")->nullable();
             $table->timestamps();
         });
     }

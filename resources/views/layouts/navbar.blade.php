@@ -15,13 +15,18 @@
                 <ul class="navbar-nav m-auto mb-2 mb-lg-0">
                     <li class="nav-item"> <a class="nav-link" href="{{ route('home') }}">Home</a></li>
                     <li class="nav-item "> <a class="nav-link" href="{{ route('room') }}">Room</a></li>
-
                     <li class="nav-item "> <a class="nav-link" href="{{ route('user.bookingform') }}">Booking</a></li>
+                    @auth
+                        @if (!(auth()->user()->is_admin))
+                            <li class="nav-item "> <a class="nav-link" href="{{ route('user.bookingform') }}">Dashboard</a>
+                            </li>
+                        @endif
+                    @endauth
                 </ul>
                 @auth
                     <div class="navbar-nav m-auto mb-2 mb-lg-0 d-flex align-items-center">
                         @if (auth()->user()->is_admin)
-                            <a class="btn bg-warning text-white m-2" href="faq.html">Admin Panel</a>
+                            <a class="btn bg-warning text-white m-2" href="{{ route('admin.dashboard') }}">Admin Panel</a>
                         @endif
                         <form method="POST" action="{{ route('logout') }}">
                             {{-- <a href="{{ route('logout') }}" class="btn btn-outline-primary bg-danger text-white">Log Out</a> --}}
@@ -31,11 +36,11 @@
                     </div>
                 @else
                     <div class="navbar-nav m-auto mb-2 mb-lg-0 d-flex align-items-center"></div>
-                        <a href="{{ route('login') }}" class="btn btn-outline-primary text-white ">Login</a>
-                    </div>
-                @endauth
+                    <a href="{{ route('login') }}" class="btn btn-outline-primary text-white ">Login</a>
+                </div>
+            @endauth
 
-            </div>
+        </div>
         </div>
 
     </nav>

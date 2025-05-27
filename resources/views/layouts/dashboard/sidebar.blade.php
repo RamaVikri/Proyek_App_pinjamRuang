@@ -21,12 +21,14 @@
                         </a>
                     </li>
                     <!--end::Fullscreen Toggle-->
+                    @auth
                     <!--begin::User Menu Dropdown-->
+                        
                     <li class="nav-item dropdown user-menu">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <img src="{{ asset('AdminLTE4/dist/assets/img/user2-160x160.jpg') }}"
                                 class="user-image rounded-circle shadow" alt="User Image" />
-                            <span class="d-none d-md-inline">Alexander Pierce</span>
+                            <span class="d-none d-md-inline">{{ auth()->user()->name }}</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                             <!--begin::User Image-->
@@ -34,7 +36,7 @@
                                 <img src="{{ asset('AdminLTE4/dist/assets/img/user2-160x160.jpg') }}"
                                     class="rounded-circle shadow" alt="User Image" />
                                 <p>
-                                    Alexander Pierce - Web Developer
+                                    {{ auth()->user()->name }} | Pemula
                                     <small>Member since Nov. 2023</small>
                                 </p>
                             </li>
@@ -53,12 +55,18 @@
                             <!--begin::Menu Footer-->
                             <li class="user-footer">
                                 <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                <a href="#" class="btn btn-default btn-flat float-end">Sign out</a>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    {{-- <a href="#" class="btn btn-default btn-flat float-end">Sign out</a> --}}
+                                    @csrf
+                                    <button type="submit" class="btn btn-default btn-flat float-end bg-danger">Logout</button>
+                                </form>
                             </li>
                             <!--end::Menu Footer-->
                         </ul>
                     </li>
                     <!--end::User Menu Dropdown-->
+                    @endauth
+
                 </ul>
                 <!--end::End Navbar Links-->
             </div>
@@ -89,7 +97,8 @@
                     <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu"
                         data-accordion="false">
                         <li class="nav-item ">
-                            <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                            <a href="{{ route('admin.dashboard') }}"
+                                class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                                 <i class="nav-icon bi bi-house"></i>
                                 <p>
                                     Dashboard
@@ -98,22 +107,25 @@
 
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.rooms') }}" class="nav-link {{ request()->routeIs('admin.rooms') ? 'active' : '' }}">
+                            <a href="{{ route('admin.rooms') }}"
+                                class="nav-link {{ request()->routeIs('admin.rooms') ? 'active' : '' }}">
                                 <i class="nav-icon bi bi-building-fill-add"></i>
                                 <p>Room</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.bookinglist') }}" class="nav-link {{ request()->routeIs('admin.bookinglist') ? 'active' : '' }}">
+                            <a href="{{ route('admin.bookinglist') }}"
+                                class="nav-link {{ request()->routeIs('admin.bookinglist') ? 'active' : '' }}">
                                 <i class="nav-icon bi bi-calendar-check-fill""></i>
                                 <p>
-                                  Booking
+                                    Booking
                                 </p>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ route('admin.users') }}" class="nav-link {{ request()->routeIs('admin.users') ? 'active' : '' }}">
+                            <a href="{{ route('admin.users') }}"
+                                class="nav-link {{ request()->routeIs('admin.users') ? 'active' : '' }}">
                                 <i class="nav-icon bi-person-fill"></i>
                                 <p>
                                     User

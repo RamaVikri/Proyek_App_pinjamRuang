@@ -1,5 +1,6 @@
 <div>
     <div class="container">
+        
         <div class="mb-4 d-flex justify-content-between">
             <div class="col-1">
                 <select wire:model.live="paginate" class="form-control form-select">
@@ -13,53 +14,52 @@
                 <input wire:model.live="search" type="text" placeholder="Search" class="form-control">
             </div>
         </div>
-        <div class="table-responsive">
-            <table class="table table-hover border-2">
-                <thead> 
+        <div class="table-responsive mt-4">
+            <table class="table table-bordered table-hover text-center align-middle">
+                <thead class="table-primary">
                     <tr>
-                        <th>No</th>
+                        <th style="width: 50px;">No</th>
                         <th>Nama</th>
                         <th>Email</th>
                         <th>Role</th>
-                        <th>
-                            <i class="bi bi-gear-fill"></i>
-                        </th>
+                        <th style="width: 120px;"><i class="bi bi-gear-fill"></i> Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($user as $item)
+                    @forelse ($users as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->name }}</td>
-                            <td>{{ $item->email }}</td>
-                            @if ($item->is_admin == true)
-                                <td>
-                                    <span class="badge bg-info">
-                                        Admin
-                                    </span> 
-                                </td>
-                            @else
-                                <td>
-                                    <span class="badge bg-dark-subtle">
-                                        User
-                                    </span> 
-                                </td>
-                            @endif
+                            <td class="text-start">{{ $item->name }}</td>
+                            <td class="text-start">{{ $item->email }}</td>
                             <td>
-                                <button class="btn btn-sm bg-warning">
-                                    <i class="bi bi-person-fill-gear"></i>
-                                    <a href="">Edit</a>
-                                </button>
-                                <button class="btn btn-sm bg-danger">
-                                    <i class="bi bi-person-dash-fill"></i>
-                                    <a href="">Hapus</a>
-                                </button>
+                                <span class="badge {{ $item->is_admin ? 'bg-info' : 'bg-secondary' }}">
+                                    {{ $item->is_admin ? 'Admin' : 'User' }}
+                                </span>
+                            </td>
+                            <td>
+                                <div class="d-flex justify-content-center gap-2">
+                                    <a href="#" class="btn btn-sm btn-warning">
+                                        <i class="bi bi-person-fill-gear"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-sm btn-danger"
+                                        onclick="return confirm('Yakin ingin menghapus?')">
+                                        <i class="bi bi-person-dash-fill"></i>
+                                    </a>
+                                </div>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="5">Tidak ada data pengguna.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
-            {{ $user->links() }}
+
+            {{-- Pagination --}}
+            <div class="d-flex justify-content-center mt-3 mr-1">
+                {{ $users->links('pagination::bootstrap-5') }}
+            </div>
         </div>
     </div>
     {{-- Because she competes with no one, no one can compete with her. --}}
