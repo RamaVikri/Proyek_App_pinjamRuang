@@ -18,11 +18,12 @@
                     <li class="nav-item "> <a class="nav-link" href="{{ route('user.bookingform') }}">Booking</a></li>
                     @auth
                         @if (!auth()->user()->is_admin)
-                            <li class="nav-item "> <a class="nav-link" href="{{ route('user.bookinghistory') }}">Booking History</a>
-                            </li>
-                            <li class="nav-item "> <a class="nav-link" href="{{ route('user.bookingform') }}">Dashboard</a>
+                            <li class="nav-item "> <a class="nav-link" href="{{ route('user.bookinghistory') }}">Booking
+                                    History</a>
                             </li>
                         @endif
+                        <li class="nav-item "> <a class="nav-link" href="{{ route('user.dashboard') }}">Dashboard</a>
+                        </li>
                     @endauth
                 </ul>
                 @auth

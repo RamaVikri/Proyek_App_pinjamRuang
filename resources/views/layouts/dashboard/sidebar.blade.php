@@ -116,7 +116,7 @@
                         <li class="nav-item">
                             <a href="{{ route('admin.bookinglist') }}"
                                 class="nav-link {{ request()->routeIs('admin.bookinglist') ? 'active' : '' }}">
-                                <i class="nav-icon bi bi-calendar-check-fill""></i>
+                                <i class="nav-icon bi bi-calendar-check-fill"></i>
                                 <p>
                                     Booking
                                 </p>
@@ -125,7 +125,7 @@
                         <li class="nav-item">
                             <a href="{{ route('admin.book-history') }}"
                                 class="nav-link {{ request()->routeIs('admin.book-history') ? 'active' : '' }}">
-                                <i class="nav-icon bi bi-calendar-check-fill""></i>
+                                <i class="nav-icon bi bi-journal-richtext"></i>
                                 <p>
                                     Booking History
                                 </p>
