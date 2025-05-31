@@ -26,25 +26,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($users as $item)
+                    @forelse ($users as $user)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td class="text-start">{{ $item->name }}</td>
-                            <td class="text-start">{{ $item->email }}</td>
+                            <td class="text-start">{{ $user->name }}</td>
+                            <td class="text-start">{{ $user->email }}</td>
                             <td>
-                                <span class="badge {{ $item->is_admin ? 'bg-info' : 'bg-secondary' }}">
-                                    {{ $item->is_admin ? 'Admin' : 'User' }}
+                                <span class="badge {{ $user->is_admin ? 'bg-info' : 'bg-secondary' }}">
+                                    {{ $user->is_admin ? 'Admin' : 'User' }}
                                 </span>
                             </td>
                             <td>
                                 <div class="d-flex justify-content-center gap-2">
-                                    <a href="#" class="btn btn-sm btn-warning">
+                                    <button wire:click="edit({{$user->id}})" class="btn btn-sm btn-warning " data-bs-toggle="modal"
+                                        data-bs-target="#editModal">
                                         <i class="bi bi-person-fill-gear"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-sm btn-danger"
-                                        onclick="return confirm('Yakin ingin menghapus?')">
+                                    </button>
+                                    <button wire:click="confirm({{$user->id}})" class="btn btn-sm btn-danger " data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal">
                                         <i class="bi bi-person-dash-fill"></i>
-                                    </a>
+                                    </button>
                                 </div>
                             </td>
                         </tr>
@@ -62,5 +63,40 @@
             </div>
         </div>
     </div>
-    {{-- Because she competes with no one, no one can compete with her. --}}
+        {{-- create Modal Edit User --}}
+        @include('livewire.admin.user.edit')
+        {{-- create Modal --}}
+        {{-- create Modal Delte delete --}}
+        @include('livewire.admin.user.delete')
+        {{-- create Modal --}}
+
+         {{-- close Edit modal --}}
+        @script
+            <script>
+                Livewire.on('closedEditModal', () => {
+                    $('#editModal').modal('hide');
+
+                    Swal.fire({
+                        title: "User Success",
+                        text: "User have been edit",
+                        icon: "success"
+                    });
+                });
+            </script>
+        @endscript
+        {{-- close Edit modal --}}
+        {{-- close Delete modal --}}
+        @script
+            <script>
+                Livewire.on('closedDeleteModal', () => {
+                    $('#deleteModal').modal('hide');
+
+                    Swal.fire({
+                        title: "User Success",
+                        text: "User have been delete",
+                        icon: "success"
+                    });
+                });
+            </script>
+        @endscript
 </div>

@@ -5,6 +5,11 @@
     {{-- <script src="{{asset('front/plugins/jquery/jquery.min.js')}}"></script> --}}
     {{-- <script src="{{asset('plugins/bootstrap/bootstrap.min.js')}}"></script> --}}
 
+    {{-- sweetalert --}}
+    <script data-navigate-once src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- sweetalert --}}
+
     <!-- Main Script -->
     {{-- <script src="js/script.js"></script> --}}
     @vite('resource/js/front/script')
+

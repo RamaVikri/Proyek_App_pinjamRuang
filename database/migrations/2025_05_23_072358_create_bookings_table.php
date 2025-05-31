@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table -> foreignId('user_id')->constrained()->onDelete('cascade');
             $table -> foreignId('room_id')->constrained()->onDelete('cascade');
-            $table ->dateTime("Start");
-            $table ->dateTime("End");
+            $table -> date('date');
+            $table -> dateTime("start");
+            $table -> dateTime("end");
             $table -> enum('status',['pending', 'approved', 'reject'])->default('pending');
             $table->timestamps();
         });

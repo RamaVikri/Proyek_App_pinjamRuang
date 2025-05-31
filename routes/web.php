@@ -1,12 +1,13 @@
 <?php
 
-use App\Livewire\Admin\RoomForm;
-use App\Livewire\Admin\BookingList;
 use App\Livewire\BookingForm;
-use App\Livewire\Settings\Appearance;
-use App\Livewire\Settings\Password;
+use App\Livewire\Admin\RoomForm;
 use App\Livewire\Settings\Profile;
+use App\Livewire\Admin\BookHistory;
+use App\Livewire\Admin\BookingList;
+use App\Livewire\Settings\Password;
 
+use App\Livewire\Settings\Appearance;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -30,6 +31,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/booking-form', function(){
         return view('user.booking-form');
     })->name('user.bookingform');
+    Route::get('/user/booking-history', function(){
+        return view('user.bookinghistory');
+    })->name('user.bookinghistory');
 
    
 });
@@ -50,6 +54,7 @@ Route::view('admin/dashboard', 'admin.dashboard')->name('admin.dashboard');
 Route::view('admin/users', 'admin.users')->name('admin.users');
 Route::view('admin/rooms', 'admin.rooms')->name('admin.rooms');
 Route::view('admin/bookinglist', 'admin.bookinglist')->name('admin.bookinglist');
+Route::view('admin/book-history', 'admin.bookhistory')->name('admin.book-history');
 
 
 

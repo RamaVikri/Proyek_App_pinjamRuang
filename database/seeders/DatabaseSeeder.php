@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Booking;
 use App\Models\Room;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
@@ -22,7 +23,8 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         //     'password' => Hash::make('password'),
         // ]);
-    
+        
+
         Room::factory()->create([
             'name' => 'CWS a',
             'type' => 'besar',
@@ -47,6 +49,17 @@ class DatabaseSeeder extends Seeder
             'name' => 'CWS e',
             'type' => 'kecil',
             'desc' => 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit asperiores, esse corrupti a nesciunt cum expedita aperiam, doloribus rem placeat laborum blanditiis repellendus repudiandae, saepe ipsum facilis molestias. Perferendis, obcaecati.',
+        ]);
+
+
+        Booking::factory()->create([
+            'user_id' => '2',
+            'room_id' => '1',
+            'start' => '11:00',
+            'date' => '2025-05-31',
+            'end' => '13:00',
+            'status' => 'pending',
+
         ]);
     }
 }

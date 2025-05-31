@@ -2,12 +2,16 @@
 
 namespace App\Livewire\Admin;
 
-use Livewire\Component;
+use Carbon\Carbon;
+use App\Models\Room;
 use App\Models\Booking;
+use Livewire\Component;
 
 class BookingList extends Component
 {
     public $bookings;
+    public $search = '';
+
 
     public function mount()
     {
@@ -26,6 +30,20 @@ class BookingList extends Component
 
     public function render()
     {
-        return view('livewire.admin.booking-list');
+        $pendingBookings = [
+            'title' => 'Pending Booking',
+            'pendingBookings' => Booking::with('room')->where('status', 'pending')
+                ->latest()->get()
+        ];
+
+        $approvedBookings = [
+            'title' => 'Approved Booking',
+            'approvedBookings' => Booking::with('room')->where('status', 'approved')
+                ->latest()->get()
+        ];
+
+        return view('livewire.admin.booking-list', $pendingBookings, $approvedBookings);
     }
+
+
 }

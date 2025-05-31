@@ -17,7 +17,9 @@
                     <li class="nav-item "> <a class="nav-link" href="{{ route('room') }}">Room</a></li>
                     <li class="nav-item "> <a class="nav-link" href="{{ route('user.bookingform') }}">Booking</a></li>
                     @auth
-                        @if (!(auth()->user()->is_admin))
+                        @if (!auth()->user()->is_admin)
+                            <li class="nav-item "> <a class="nav-link" href="{{ route('user.bookinghistory') }}">Booking History</a>
+                            </li>
                             <li class="nav-item "> <a class="nav-link" href="{{ route('user.bookingform') }}">Dashboard</a>
                             </li>
                         @endif
