@@ -37,26 +37,13 @@
                                     class="rounded-circle shadow" alt="User Image" />
                                 <p>
                                     {{ auth()->user()->name }} | Pemula
-                                    <small>Member since Nov. 2023</small>
+                                    <small>{{ auth()->user()->email }}</small>
                                 </p>
                             </li>
                             <!--end::User Image-->
-                            <!--begin::Menu Body-->
-                            <li class="user-body">
-                                <!--begin::Row-->
-                                <div class="row">
-                                    <div class="col-4 text-center"><a href="#">Followers</a></div>
-                                    <div class="col-4 text-center"><a href="#">Sales</a></div>
-                                    <div class="col-4 text-center"><a href="#">Friends</a></div>
-                                </div>
-                                <!--end::Row-->
-                            </li>
-                            <!--end::Menu Body-->
                             <!--begin::Menu Footer-->
                             <li class="user-footer">
-                                <a href="#" class="btn btn-default btn-flat">Profile</a>
                                 <form method="POST" action="{{ route('logout') }}">
-                                    {{-- <a href="#" class="btn btn-default btn-flat float-end">Sign out</a> --}}
                                     @csrf
                                     <button type="submit" class="btn btn-default btn-flat float-end bg-danger">Logout</button>
                                 </form>

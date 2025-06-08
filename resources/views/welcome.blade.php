@@ -65,9 +65,8 @@
                 <div class="col-lg-6 mb-5 mb-lg-0">
                     <div class="block text-center text-lg-start pe-0 pe-xl-5">
                         <h1 class="text-capitalize mb-4">Mudah. Cepat. Mantap!</h1>
-                        <p class="mb-4">Unlocking Potential, Igniting Excellence</p> <a type="button"
-                            class="btn btn-outline-primary text-white" href="#" data-bs-toggle="modal"
-                            data-bs-target="#applyLoan">See More<span style="font-size: 14px;"
+                        <p class="mb-4">Booking Online Cepat</p> <a type="button"
+                            class="btn btn-outline-primary text-white" href="{{ route('room') }}">See More<span style="font-size: 14px;"
                                 class="ms-2 fas fa-arrow-right"></span></a>
                     </div>
                 </div>
@@ -142,9 +141,7 @@
                     <a class="text-black" href="{{ route('room') }}">
                         <div class="block"> <span class="colored-box text-center h3 mb-4">01</span>
                             <h3 class="mb-3 service-title">Look For Room</h3>
-                            <p class="mb-0 service-description">Lorem ipsum dolor sit amet, consetetur sadipscing
-                                elitr, sed diam nonumy
-                                eirmod</p>
+                            <p class="mb-0 service-description">lihat lihat ruang untuk dibooking?</p>
                         </div>
                     </a>
                 </div>
@@ -152,9 +149,7 @@
                     <a class="text-black" href="{{ route('register') }}">
                         <div class="block"> <span class="colored-box text-center h3 mb-4">02</span>
                             <h3 class="mb-3 service-title">Register if you dont</h3>
-                            <p class="mb-0 service-description">Lorem ipsum dolor sit amet, consetetur sadipscing
-                                elitr, sed diam nonumy
-                                eirmod</p>
+                            <p class="mb-0 service-description">Daftar dulu jika belum</p>
                         </div>
                     </a>
                 </div>
@@ -162,9 +157,7 @@
                     <a class="text-black" href="{{ route('room') }}">
                         <div class="block"> <span class="colored-box text-center h3 mb-4">03</span>
                             <h3 class="mb-3 service-title">Chosee your room</h3>
-                            <p class="mb-0 service-description">Lorem ipsum dolor sit amet, consetetur sadipscing
-                                elitr, sed diam nonumy
-                                eirmod</p>
+                            <p class="mb-0 service-description">Pilih ruangan yang sesuai dengan kamu</p>
                         </div>
                     </a>
                 </div>
@@ -172,9 +165,7 @@
                     <a class="text-black" href="{{ route('user.bookingform') }}">
                         <div class="block"> <span class="colored-box text-center h3 mb-4">04</span>
                             <h3 class="mb-3 service-title">Book Room</h3>
-                            <p class="mb-0 service-description">Lorem ipsum dolor sit amet, consetetur sadipscing
-                                elitr, sed diam nonumy
-                                eirmod</p>
+                            <p class="mb-0 service-description">Pesan ruangannya sekarang</p>
                         </div>
                     </a>
                 </div>
@@ -182,9 +173,7 @@
                     <a class="text-black" href="{{ route('home') }}">
                         <div class="block"> <span class="colored-box text-center h3 mb-4">05</span>
                             <h3 class="mb-3 service-title">Enjoy Your Room</h3>
-                            <p class="mb-0 service-description">Lorem ipsum dolor sit amet, consetetur sadipscing
-                                elitr, sed diam nonumy
-                                eirmod</p>
+                            <p class="mb-0 service-description">Nikmati ruangan yang kamu pinjem</p>
                         </div>
                     </a>
                 </div>

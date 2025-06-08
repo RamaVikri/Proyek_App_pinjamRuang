@@ -20,13 +20,21 @@ class BookingList extends Component
 
     public function approve($id)
     {
-        Booking::find($id)->update(['status' => 'approved']);
+        $booking = Booking::findOrFail($id);
+        $booking->status = 'approved';
+        $booking->save();
+        $this->dispatch('bookingApproved');
     }
 
     public function reject($id)
     {
-        Booking::find($id)->update(['status' => 'rejected']);
+        $booking = Booking::findOrFail($id);
+        $booking->status = 'reject';
+        $booking->save();
+
+        $this->dispatch('bookingReject',);
     }
+
 
     public function render()
     {
@@ -44,6 +52,4 @@ class BookingList extends Component
 
         return view('livewire.admin.booking-list', $pendingBookings, $approvedBookings);
     }
-
-
 }

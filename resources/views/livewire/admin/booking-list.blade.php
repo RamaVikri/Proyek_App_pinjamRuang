@@ -28,9 +28,6 @@
                                     </span>
                                 </td>
                                 <td>
-                                    {{ $book->room->name }}
-                                </td>
-                                <td>
                                     {{ $book->date }}
                                 </td>
                                 <td>
@@ -38,7 +35,7 @@
                                     {{ \Carbon\Carbon::parse($book->end)->format('H:i') }}
                                 </td>
                                 <td>
-                                    @if ($book->status = 'pending')
+                                    @if ($book->status == 'pending')
                                         <span class="badge bg-warning">Pending</span>
                                     @else
                                         <span class="badge bg-danger">Dipinjam</span>
@@ -46,14 +43,14 @@
                                 </td>
                                 <td>
                                     <div class="d-flex justify-content-center gap-2">
-                                        <a href="#" class="btn btn-sm btn-warning">
-                                            <i class="bi bi-pencil-square"></i>
-
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-danger"
-                                            onclick="return confirm('Yakin ingin menghapus?')">
-                                            <i class="bi bi-trash3-fill"></i>
-                                        </a>
+                                        <button wire:click="approve({{ $book->id }})" class="btn btn-sm btn-success"
+                                            title="Terima">
+                                            <i class="bi bi-check-circle-fill"></i>
+                                        </button>
+                                        <button wire:click="reject({{ $book->id }})" class="btn btn-sm btn-danger"
+                                            title="Tolak">
+                                            <i class="bi bi-x-circle-fill"></i>
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
@@ -95,9 +92,6 @@
                                     </span>
                                 </td>
                                 <td>
-                                    {{ $book->room->name }}
-                                </td>
-                                <td>
                                     {{ $book->date }}
                                 </td>
                                 <td>
@@ -113,14 +107,10 @@
                                 </td>
                                 <td>
                                     <div class="d-flex justify-content-center gap-2">
-                                        <a href="#" class="btn btn-sm btn-warning">
-                                            <i class="bi bi-pencil-square"></i>
-
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-danger"
-                                            onclick="return confirm('Yakin ingin menghapus?')">
-                                            <i class="bi bi-trash3-fill"></i>
-                                        </a>
+                                         <button wire:click="reject({{ $book->id }})" class="btn btn-sm btn-danger"
+                                            title="Tolak">
+                                            <i class="bi bi-x-circle-fill"></i>
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
@@ -133,6 +123,26 @@
                 </table>
             </div>
         </div>
-
     </div>
+    @push('scripts')
+        <script>
+            Livewire.on('bookingApproved', message => {
+                Swal.fire({
+                    title: 'Berhasil!',
+                    text: 'Booking telah diterima',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+            });
+            Livewire.on('bookingReject', message => {
+                Swal.fire({
+                    title: 'Berhasil!',
+                    text: 'Booking ditolak',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+            });
+        </script>
+    @endpush
+
 </div>

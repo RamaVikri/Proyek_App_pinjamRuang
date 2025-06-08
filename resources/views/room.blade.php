@@ -74,8 +74,8 @@
                     <div class="section-title text-center">
                         <p class="text-primary text-uppercase fw-bold mb-3">Our Availabe Room</p>
                         <h1>Daftar Ruang Student Center</h1>
-                        <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing . egestas
-                            <br>cursus pellentesque dignissim dui, congue. Vel etiam ut
+                        <p class="mb-0">Ini adalah daftar ruangannya
+                            <br>Pilihlah ruang yang tersedia 
                         </p>
                     </div>
                 </div>
