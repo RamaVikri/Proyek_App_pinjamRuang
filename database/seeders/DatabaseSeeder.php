@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         //     'password' => Hash::make('password'),
         // ]);
         
+        
 
         Room::factory()->create([
             'name' => 'CWS a',
@@ -55,11 +56,14 @@ class DatabaseSeeder extends Seeder
         Booking::factory()->create([
             'user_id' => '2',
             'room_id' => '1',
-            'start' => '11:00',
-            'date' => '2025-05-31',
-            'end' => '13:00',
+            'start' => '2025-06-11 23:24:00',
+            'date' => '2025-06-11',
+            'end' => '2025-06-11 23:24:00',
             'status' => 'pending',
-
         ]);
+
+        $this->call([
+        BookingSeeder::class,
+    ]);
     }
 }

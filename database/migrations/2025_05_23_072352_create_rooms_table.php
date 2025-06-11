@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->enum('type', ['besar', 'sedang', 'kecil']);
+            $table->enum('status', ['tersedia', 'dipinjam'])->default('tersedia');;
             $table->text("desc")->nullable();
             $table->timestamps();
         });

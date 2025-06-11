@@ -30,7 +30,7 @@
                         <th>Nama Ruang</th>
                         <th>Jenis</th>
                         <th>Deskripsi</th>
-                        <th>Status</th>
+                        {{-- <th>Status</th> --}}
                         <th style="width: 120px;"><i class="bi bi-gear-fill"></i> Aksi</th>
                     </tr>
                 </thead>
@@ -49,13 +49,13 @@
                             <td class="text-start" style="max-width: 300px;">
                                 {{ Str::limit($room->desc, 100) }}
                             </td>
-                            <td>
-                                @if ($room->is_available)
+                            {{-- <td>
+                                @if ($room->status == 'tersedia')
                                     <span class="badge bg-success">Tersedia</span>
                                 @else
                                     <span class="badge bg-danger">Dipinjam</span>
                                 @endif
-                            </td>
+                            </td> --}}
                             <td>
                                 <div class="d-flex justify-content-center gap-2">
                                     <button wire:click="edit({{$room->id}})" class="btn btn-sm btn-warning " data-bs-toggle="modal"

@@ -9,12 +9,13 @@ use Livewire\Component;
 
 class BookingList extends Component
 {
-    public $bookings;
+    public $bookings, $room;
     public $search = '';
 
 
     public function mount()
     {
+        $this->updateExpiredStatuses();
         $this->bookings = Booking::with('user', 'room')->latest()->get();
     }
 
@@ -23,13 +24,30 @@ class BookingList extends Component
         $booking = Booking::findOrFail($id);
         $booking->status = 'approved';
         $booking->save();
+
+        $room = Room::findOrFail($booking->room_id);
+        $room->status = 'dipinjam';
+        $room->save();
         $this->dispatch('bookingApproved');
+    }
+
+     public function updateExpiredStatuses()
+    {
+        $now = Carbon::now();
+
+        Booking::where('status', 'approved')
+            ->where('end', '<=', $now)
+            ->update(['status' => 'completed']);
+
+        Booking::where('status', 'pending')
+            ->where('end', '<=', $now)
+            ->update(['status' => 'rejected']);
     }
 
     public function reject($id)
     {
         $booking = Booking::findOrFail($id);
-        $booking->status = 'reject';
+        $booking->status = 'rejected';
         $booking->save();
 
         $this->dispatch('bookingReject',);

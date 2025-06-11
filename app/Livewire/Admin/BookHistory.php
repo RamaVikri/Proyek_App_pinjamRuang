@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use Carbon\Carbon;
+use App\Models\Room;
 use App\Models\Booking;
 use Livewire\Component;
 
@@ -24,13 +25,13 @@ class BookHistory extends Component
         $donebookings = Booking::with(['user', 'room'])
             ->orderBy('date', 'desc')
             ->orderBy('start', 'desc')
-            ->where('status', 'done')
+            ->where('status', 'completed')
             ->get();
 
         $rejectbookings = Booking::with(['user', 'room'])
             ->orderBy('date', 'desc')
             ->orderBy('start', 'desc')
-            ->where('status', 'reject')
+            ->where('status', 'rejected')
             ->get();
 
         return view(
@@ -46,12 +47,36 @@ class BookHistory extends Component
     {
         $now = Carbon::now();
 
-        Booking::where('status', 'approved')
+        // tandai ruangan yang telah diapproved
+        $completedBookings = Booking::where('status', 'approved')
             ->where('end', '<=', $now)
-            ->update(['status' => 'done']);
+            ->get();
 
+        // Update setiap booking 
+        foreach ($completedBookings as $booking) {
+            // Update booking status
+            $booking->status = 'completed';
+            $booking->save();
+
+            // Update room status 
+            $room = Room::find($booking->room_id);
+            if ($room) {
+                // Check jika ada ruang yang masih dalam masa pinjam
+                $hasActiveBookings = Booking::where('room_id', $room->id)
+                    ->where('id', '!=', $booking->id)
+                    ->where('status', 'approved')
+                    ->where('end', '>', $now)
+                    ->exists();
+
+                // jika sudah lewat masa waktu maka menjadi tersedia
+                if (!$hasActiveBookings) {
+                    $room->status = 'tersedia';
+                    $room->save();
+                }
+            }
+        }
         Booking::where('status', 'pending')
             ->where('end', '<=', $now)
-            ->update(['status' => 'reject']);
+            ->update(['status' => 'rejected']);
     }
 }

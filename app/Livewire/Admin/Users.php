@@ -15,12 +15,12 @@ class Users extends Component
     public $name, $user_id, $role;
     public function render()
     {
-        $data = array(
+        $data = [
             'title' => 'User',
             'users' => User::where('name', 'like', '%' . $this->search . '%')
                 ->orwhere('email', 'like', '%' . $this->search . '%')
                 ->orderBy('is_admin', 'desc')->paginate($this->paginate)
-        );
+        ];
         return view('livewire.admin.users', $data);
     }
 
@@ -64,7 +64,7 @@ class Users extends Component
         $this->user_id = $user->id;
     }
 
-    public function destory($id)
+    public function destroy($id)
     {
         $user = User::findOrFail($id);
         $user->delete();

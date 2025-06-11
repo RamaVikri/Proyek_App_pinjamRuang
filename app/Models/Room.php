@@ -12,6 +12,7 @@ class Room extends Model
         'name',
         'type',
         'desc',
+        'status'
     ];
 
     public function bookings()

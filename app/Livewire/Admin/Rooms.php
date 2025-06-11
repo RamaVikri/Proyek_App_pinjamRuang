@@ -12,20 +12,23 @@ use PhpParser\Node\Expr\Cast\Bool_;
 class Rooms extends Component
 {
 
-    public $name, $type, $desc, $room_id;
+    public $name, $type, $desc, $room_id, $totalRooms;
     public $search = '';
+
+    public function mount()
+    {
+        $this->totalRooms = Room::count();
+    }
 
     public function render()
     {
         $now = Carbon::now();
 
         // mysql
-        // $rooms = array(
-        //     'rooms' => Room::orderByRaw("FIELD(type, 'besar', 'sedang', 'kecil')")->get()
-        // );
+        $rooms = Room::orderByRaw("FIELD(type, 'besar', 'sedang', 'kecil')")->get();
 
         // sqlite
-        $rooms = Room::with('bookings')->get();
+        // $rooms = Room::with('bookings')->get();
 
         return view('livewire.admin.rooms', [
             'title' => 'Ruangan',
@@ -112,7 +115,7 @@ class Rooms extends Component
 
     }
 
-    public function destory($id){
+    public function destroy($id){
         $room = Room::findOrFail($id);
         $room->delete();
         $this->dispatch('closedDeleteModal');

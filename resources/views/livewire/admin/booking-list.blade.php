@@ -8,6 +8,7 @@
                         <tr>
                             <th style="width: 50px;">No</th>
                             <th>Nama Ruang</th>
+                            <th>Nama Pemesan</th>
                             <th>Jenis</th>
                             <th>Tanggal</th>
                             <th>Jam</th>
@@ -20,6 +21,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td class="text-start">{{ $book->room->name }}</td>
+                                <td class="text-start">{{ $book->user->name }}</td>
                                 <td>
                                     <span
                                         class="badge 
@@ -56,7 +58,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="7">Tidak ada data ruang tersedia.</td>
+                                <td colspan="8">Tidak ada data ruang tersedia.</td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -72,6 +74,7 @@
                         <tr>
                             <th style="width: 50px;">No</th>
                             <th>Nama Ruang</th>
+                            <th>Nama Pemesan</th>
                             <th>Jenis</th>
                             <th>Tanggal</th>
                             <th>Jam</th>
@@ -84,6 +87,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td class="text-start">{{ $book->room->name }}</td>
+                                <td class="text-start">{{ $book->user->name }}</td>
                                 <td>
                                     <span
                                         class="badge 
@@ -100,9 +104,9 @@
                                 </td>
                                 <td>
                                     @if ($book->status = 'approved')
-                                        <span class="badge bg-success">Dipinjam</span>
+                                        <span class="badge bg-success">Diterima</span>
                                     @else
-                                        <span class="badge bg-danger">Dipinjam</span>
+                                        <span class="badge bg-danger">Ditolak</span>
                                     @endif
                                 </td>
                                 <td>
@@ -116,7 +120,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="7">Tidak ada data ruang tersedia.</td>
+                                <td colspan="8">Tidak ada data ruang tersedia.</td>
                             </tr>
                         @endforelse
                     </tbody>

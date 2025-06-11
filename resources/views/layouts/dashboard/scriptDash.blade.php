@@ -18,6 +18,12 @@
     {{-- sweetalert --}}
     <script data-navigate-once src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     {{-- sweetalert --}}
+
+    <!-- Add to your layout file -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js"></script>
+
     
 
     {{-- <script>

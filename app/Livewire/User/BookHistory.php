@@ -24,10 +24,10 @@ class BookHistory extends Component
 
         Booking::where('status', 'approved')
             ->where('end', '<=', $now)
-            ->update(['status' => 'done']);
+            ->update(['status' => 'completed']);
 
         Booking::where('status', 'pending')
             ->where('end', '<=', $now)
-            ->update(['status' => 'reject']);
+            ->update(['status' => 'rejected']);
     }
 }

@@ -26,7 +26,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">tutup</button>
-                <button wire:click="destory({{ $user_id }})" type="button" class="btn btn-danger">Hapus</button>
+                <button wire:click="destroy({{ $user_id }})" type="button" class="btn btn-danger">Hapus</button>
             </div>
         </div>
     </div>
